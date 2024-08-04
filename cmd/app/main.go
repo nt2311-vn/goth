@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
+	"github.com/nt2311-vn/goth/handlers"
 )
 
 func main() {
@@ -16,13 +17,9 @@ func main() {
 	}
 	router := chi.NewMux()
 
-	router.Get("/foo", handleFoo)
+	router.Get("/foo", handlers.Make(handlers.HandleFoo))
 
 	listenAddr := os.Getenv("LISTEN_ADDR")
 	slog.Info("HTTP server started", "listenAddr", listenAddr)
 	http.ListenAndServe(listenAddr, router)
-}
-
-func handleFoo(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("foo"))
 }
