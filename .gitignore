@@ -3,3 +3,6 @@
 
 # Build binary dir
 bin/
+
+# Templ file
+tmp/
